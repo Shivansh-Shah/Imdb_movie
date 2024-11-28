@@ -129,6 +129,7 @@ class Movie: #defining a class movie to store all data retrieved about the movie
 
 def build_moviedata_object(MovieID):
     ''' getting all movie data from the database about a particular movie and returning it in the form of a movie object'''
+    #exception handling: if movie is not in database, will print not found and return -1
     try:
         cur = con.cursor()
         cur.execute("SELECT * FROM Movies WHERE MovieID = {}".format(MovieID))
@@ -169,7 +170,7 @@ def filtersort(opt_filter, choice, opt_sortby, asc):
             if i not in unique_lst:
                 unique_lst.append(i)
         return unique_lst
-    
+    #exception handling: if choice is not in database, will print not found and return -1
     try:
 
         if opt_filter == 'Genre': #filter by genre
@@ -285,17 +286,5 @@ def get_userdata(Username):
 
     #returning user object
     return User(Username, UserData[1], UserData[2], UserMovies)
-
-#testing
-#movie_data_dump(getMovieID("PK"), getMovieData("PK"))
-# print(filtersort("Director", "MovieDate", "ASC"))
-# md = build_moviedata_object(206527)
-# print(md.id, md.name, md.date, md.directors, md.photo, md.plot, md.rating, md.actors, md.genres)
-insert_favourites('ShyNightshade', '3 Idiots')
-insert_favourites('ShyNightshade', 'Dangal')
-insert_favourites('ShyNightshade', 'Inception')
-
-ud1 = get_userdata('ShyNightshade')
-print(ud1.username, ud1.firstname, ud1.lastname, ud1.favourites)
 
 con.close()
