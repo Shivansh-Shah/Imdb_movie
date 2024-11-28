@@ -34,14 +34,3 @@ def getMovieData(movieName):
         return(data) 
     else:
         return -1
-
-
-
-
-
-
-# print((getGraphData((getMovieID("3 Idiots")))))
-# print(getMovieData((("3 idiots"))))
-
-# print(type(getMovieData((("3 idiots")))))
-# print(type(getMovieID("3 Idiots")))
