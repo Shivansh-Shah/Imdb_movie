@@ -16,7 +16,7 @@ def getMovieID(movieName):
     
         soup = BeautifulSoup(movie.text, 'html.parser' )
         data = soup.find_all( 'div' , class_ = 'titles results' )
-        return(( data[0].find_all('a')[0].get('href') ).split('-')[-1][0:-1] )
+        return(float( data[0].find_all('a')[0].get('href') ).split('-')[-1][0:-1] )
     
     else:
     
