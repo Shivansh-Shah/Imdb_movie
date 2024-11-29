@@ -1,6 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
-from data_scraping import *
+from datascraped import *
 import mysql.connector as mysql
 
 def connect_db():
@@ -115,7 +115,7 @@ def movie_data_dump(MovieID, data):
     con.commit()
     cur.close()
 
-class Movie: #defining a class movie to store all data retrieved about the movie from the database.
+class Movie(): #defining a class movie to store all data retrieved about the movie from the database.
     def __init__(self, id, name, date, plot, photo, rating, actors, directors, genres):
         self.id = id
         self.name = name
@@ -259,7 +259,7 @@ def insert_favourites(Username, MovieName):
     finally:
         cur.close()
 
-class User:
+class User():
     def __init__(self, username, firstname, lastname, favourites):
         self.username = username
         self.firstname = firstname
@@ -269,16 +269,17 @@ class User:
 def get_userdata(Username):
     '''function to get user data, including username, first name, last name, and favourites in the form of a user object'''
     cur = con.cursor()
+    #exception handling: if user is not in database, will print not found and return -1
     try:
         #getting user data from the user table
         cur.execute("SELECT * FROM Users WHERE Username = '{}'".format(Username))
         UserData = cur.fetchone()
-        if UserData is None:
+        if UserData == ():
             raise Exception
         #getting favourites from user_movie relationship table
         cur.execute("SELECT MovieID FROM User_Movie WHERE Username = '{}'".format(Username))
         UserMovies = [x[0] for x in cur.fetchall()]
-    except:
+    except Exception:
         print("Not Found")
         return -1
     finally:
@@ -286,5 +287,19 @@ def get_userdata(Username):
 
     #returning user object
     return User(Username, UserData[1], UserData[2], UserMovies)
+
+#testing
+movie_data_dump(getMovieID("Animal"), getMovieData("Animal"))
+print(filtersort("Genre", "Romance", "MovieDate", "ASC"))
+md = build_moviedata_object(getMovieID("The Matrix"))
+print(md.id, md.name, md.date, md.directors, md.photo, md.plot, md.rating, md.actors, md.genres)
+insert_favourites('DarshVeer', 'The Matrix')
+insert_favourites('ShyNightshade', 'Jagga Jasoos')
+
+
+ud1 = get_userdata('ShyNightshade')
+print(ud1.username, ud1.firstname, ud1.lastname, ud1.favourites)
+ud2 = get_userdata('DarshVeer')
+print(ud2.username, ud2.firstname, ud2.lastname, ud2.favourites)
 
 con.close()
