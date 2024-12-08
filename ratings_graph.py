@@ -46,7 +46,7 @@ def generate_graph():
     
 graph1 = generate_graph()
 
-print(graph1)
+#print(graph1)
 
 
 #print(fig1)
