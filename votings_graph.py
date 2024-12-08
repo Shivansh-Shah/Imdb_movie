@@ -40,6 +40,6 @@ def generate_graph():
     
 graph2 = generate_graph()
 print(graph2)
-plot.show()
+
 
 
