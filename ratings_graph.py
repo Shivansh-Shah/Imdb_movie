@@ -34,7 +34,7 @@ class Visualiser1:
     #Formatter to represent x coordinates ( because GraphData has d['x'] in epoch time and above xpoints did conversion into seconds)
         ax.xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m'))
     #Filtering out the possible x-coordinates that are to be displayed by a time gap of 180 days.
-        ax.xaxis.set_major_locator(mdates.DayLocator(interval = ))
+        ax.xaxis.set_major_locator(mdates.DayLocator(interval = 180))
 
     #Display points on y axis. ( [0, 10] because average ratings lie in that interval only.)
         ax.set_yticks([0, 2, 4, 6, 8, 10]) 
