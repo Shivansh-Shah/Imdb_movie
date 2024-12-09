@@ -1,7 +1,7 @@
 import tkinter as tk
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-from finalbuf1 import Graph1
-from finalbuf2 import Graph2
+from ratings_graph import Graph1
+from votings_graph import Graph2
 
 # Create the main application window
 root = tk.Tk()
