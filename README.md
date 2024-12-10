@@ -1,6 +1,6 @@
 #   IMDB RATINGS AND MOVIES
 
-## Project Overview
+## File Overview
 TrendAnalyzer is a Python-based file  that visualizes movie data trends using graphs. It focuses on two key aspects:
 - Total votes over time.
 - Average ratings over time.
