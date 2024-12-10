@@ -296,8 +296,6 @@ def delete_favourites(Username, MovieName):
 class User:
     def __init__(self, username, firstname, lastname, favourites):
         self.username = username
-        self.firstname = firstname
-        self.lastname = lastname
         self.favourites = favourites
 
 def get_userdata(Username):
@@ -319,7 +317,7 @@ def get_userdata(Username):
         cur.close()
 
     #returning user object
-    return User(Username, UserData[1], UserData[2], UserMovies)
+    return User(Username, UserMovies)
 
 def build_db():
     '''this function can only be called once at the beginning of the program to build the database and then insert the data into the tables'''
@@ -408,10 +406,10 @@ def build_db():
     "De De Pyaar De", "Ludo", "Mimi", "Bajrangi Bhaijaan", "Kesari", "Maine Pyar Kiya"
     ]
 
-    for i in movies_list: #commits data of top 250 movies onto local system
+    for i in movies_list:
         movie_data_dump(getMovieID(i), getMovieData(i))
     
-    for mov in movies_list: #downloads all movie posters onto local system
+    for mov in movies_list:
         try:
             savePoster(mov)
         except:
@@ -429,5 +427,19 @@ def check_in_database(MovieID):
     if MovieID in existing:
         return True
     return False
+    
+#testing
+# build_db()
+# movie_data_dump(getMovieID("Mamma Mia"), getMovieData("Mamma Mia"))
+# print(filtersort("Genre", "Romance", "MovieDate", "ASC"))
+# md = build_moviedata_object(getMovieID("Mamma Mia"))
+# print(md.id, md.name, md.date, md.directors, md.photo, md.plot, md.rating, md.actors, md.genres)
+insert_favourites('yukabuka', 'Lagaan')
+insert_favourites('yukabuka', 'The Lego Batman Movie')
+
+
+# ud1 = get_userdata('ShyNightshade')
+# print(ud1.username, ud1.firstname, ud1.lastname, ud1.favourites)
+
 
 con.close()
