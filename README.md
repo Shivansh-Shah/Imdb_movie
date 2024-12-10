@@ -26,7 +26,7 @@ The **Cinephile_App** serves as an interactive movie database and visualization 
 - **Tkinter**: GUI framework.
 - **CustomTkinter**: Enhanced `tkinter` features.
 - **Matplotlib**: For graph plotting.
-- **SQLite/MySQL Database**: Database handling for storing movies, actors, and user preferences.
+- **MySQL Database**: Database handling for storing movies, actors, and user preferences.
 - **Datetime & Numpy**: For datetime conversions and in visualisation.py
 
 ## Setup Instructions
