@@ -20,7 +20,7 @@ The **Cinephile_App** serves as an interactive movie database and visualization 
   relationship tables which holds information related to our app.
   
    Stores information related to movies and the application' users.
-- ** Visualisation ** : Visualisation.py displays two graphs in a separate window ( side by side ) 
+- ** Visualisation ** : Visualisation.py displays two graphs in a separate window ( side by side frames). 
 
 ## Modules used: 
 - **Tkinter**: GUI framework.
