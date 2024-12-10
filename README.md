@@ -10,7 +10,11 @@ The **Cinephile_App** serves as an interactive movie database and visualization 
 ---
 
 ## Features
-- ** Database management** :
+-   ** Web Scraping** :
+
+     They are the source for our App's database and Visualisation
+    
+-   ** Database management** :
 
    The SQL database consists of 2 main tables: *Users* and *Movies*, along with a number of
   relationship tables which holds information related to our app.
@@ -33,11 +37,11 @@ To run this project locally, follow these steps
 ### 2. Install Required Packages
 Install dependencies with `pip`:
 ```bash
+pip install requests
+pip install beautifulsoup4
 pip install tkinter customtkinter matplotlib numpy
 
-### 3. Set Up the Database Schema
-1. Open your database client (MySQL, SQLite, etc.).
-2. Run the schema script provided in `database/schema.sql` to create database tables.
+
 
 ### 4. Configure Database Connection (if needed)
 Database connection settings might need to be set up within `datascraped.py`. Ensure database credentials are configured properly.
@@ -47,7 +51,13 @@ Launch the GUI application via:
 
 python main.py
 ```
+## Web scraping ( datascraped.py) 
 
+- Source for Database management ( Omdbapi - website )
+   https://www.omdbapi.com/
+
+- Source for Visualisation ( ratingraph - website )
+    https://www.ratingraph.com/
 
 ## Database Management ( data_fetcher.py and sql_syntax.py) 
 
