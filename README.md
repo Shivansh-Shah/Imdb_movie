@@ -1,94 +1,68 @@
-#   IMDB RATINGS AND MOVIES
+# Cinephile_App with Data Visualization Integration
 
-## File Overview
-TrendAnalyzer is a Python-based file  that visualizes movie data trends using graphs. It focuses on two key aspects:
-- Total votes over time.
-- Average ratings over time.
+## Introduction: 
 
-The file features an intuitive graphical user interface (GUI) built with `tkinter` and `customtkinter`, providing interactive and visually appealing charts powered by `matplotlib`.
+ 
+
+## Overview
+
+The **Cinephile_App** serves as an interactive movie database and visualization platform. It features data on movies present  in our database  using statistics such as *average ratings over time* and *total votes trends*. The visualization is powered by **Custom Tkinter**, and a **Matplotlib**.
+
+---
 
 ## Features
-1. **Graphical Visualization:**
-   - Displays "Total Votes Over Time" with customizable x and y axes.
-   - Displays "Average Rating Over Time" with user-friendly formatting.
-2. **Responsive GUI:**
-   - Sidebar for navigation and customization.
-   - Integrated graphs embedded in the GUI.
-3. **Dynamic Data Fetching:**
-   - Retrieves movie data using the `datascraped.py` module.
-4. **Custom Styling:**
-   - Dark-themed interface with polished elements for better aesthetics.
+- ** Database management** :
+-  Stores information related to movies and the application' users.
+- ** Visualisation ** : Visualisation.py displays two graphs in a separate window ( side by side ) 
 
-## Screenshots
-*(Add screenshots of the application here to highlight the GUI and the graphs.)*
+## Modules used: 
+- **Tkinter**: GUI framework.
+- **CustomTkinter**: Enhanced `tkinter` features.
+- **Matplotlib**: For graph plotting.
+- **SQLite/MySQL Database**: Database handling for storing movies, actors, and user preferences.
+- **Datetime & Numpy**: For datetime conversions and in visualisation.py
 
-## Dependencies
-To run the project, the following libraries and tools are required:
+## Setup Instructions
 
-- **Python Libraries:**
-  ```bash
-  pip install requests
-  pip install beautifulsoup4
-  python -m pip install mysql-connector-python
-  pip install matplotlib
-  pip install numpy
-  pip install customtkinter
-  pip install pillow
-  ```
-- **Database:**
-  - MySQL (must be installed on your system).
+To run this project locally, follow these steps
+```
 
-## List of Libraries/APIs/Databases Used
-- **Libraries:**
-  - `tkinter`: For GUI elements.
-  - `customtkinter`: For enhanced UI components.
-  - `matplotlib`: For graph plotting.
-  - `numpy`: For numerical computations.
-  - `Pillow`: For image processing.
-  - `requests` and `beautifulsoup4`: For web scraping in `datascraped.py`.
-  - `mysql-connector-python`: For database interactions.
+### 2. Install Required Packages
+Install dependencies with `pip`:
+```bash
+pip install tkinter customtkinter matplotlib numpy
 
-- **Database:**
-  - MySQL: Stores and retrieves movie data used in visualizations.
+### 3. Set Up the Database Schema
+1. Open your database client (MySQL, SQLite, etc.).
+2. Run the schema script provided in `database/schema.sql` to create database tables.
 
-## Class and Module Descriptions
+### 4. Configure Database Connection (if needed)
+Database connection settings might need to be set up within `datascraped.py`. Ensure database credentials are configured properly.
 
-### Modules:
-1. **`datascraped.py`**:
-   - Contains functions to fetch movie data:
-     - `getMovieID(movieName)`: Fetches the ID for a given movie.
-     - `getGraphData(movieID)`: Retrieves the data needed for graph generation.
+### 5. Run the Visualization Application
+Launch the GUI application via:
 
-### Classes:
-1. **`Visualiser1` (Average Ratings Graph):**
-   - Handles the creation of the "Average Rating Over Time" graph.
-   - Customizes axes, labels, grid, and overall design.
+python main.py
+```
 
-2. **`Visualiser2` (Total Votes Graph):**
-   - Handles the creation of the "Total Votes Over Time" graph.
-   - Converts vote counts to thousands for readability and customizes the appearance.
 
-### Functions:
-1. **`graph_page(movieName)`**:
-   - Creates the main GUI window for displaying the graphs.
-   - Fetches the required data and embeds graphs within the app.
-   - Includes navigation options and custom styling.
+## Database Management ( data_fetcher.py and sql_syntax.py) 
 
-## How to Run
-1. Install the dependencies listed above.
-2. Ensure MySQL is installed and properly configured on your system.
-3. Clone this repository and navigate to the project directory.
-4. Run the following command to start the application:
-   ```bash
-   python trendanalyzer.py
-   ```
-5. Enter the name of a movie to generate and view its data trends.
+- Has Two classes and a function:
+
+- 
 
 
 
-- Include more customization options for graphs (e.g., color themes).
-- Enhance error handling and input validation.
+## Visualisation.py
+- Has classes Visualisation1 and Visualisation2. 
+- Visualiser1: This class has an attribute graphdata, which is fetched from datascraped.py
+  It makes use of graphdata and returns a figure ( average ratings graph )
+   
+- Visualiser2: This class is similar to Visualiser1, except it returns another figure
+  ( total votes graph ).
 
-## License
-*(Specify your project's license here, if applicable.)*
+### Screenshot Example
+ Yet to be updated.
 
+ ## 
