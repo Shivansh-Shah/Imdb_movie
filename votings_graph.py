@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.dates as mdates
 from datetime import datetime
 
-from datascraped import GraphData
+from datascraped import getMovieID, getGraphData, movieName
 
 class Visualiser2:
     
@@ -40,8 +40,5 @@ class Visualiser2:
         return fig
         
     
-visualiser2 = Visualiser2(GraphData)
-Graph2 = visualiser2.generate_graph()
-
 
 
