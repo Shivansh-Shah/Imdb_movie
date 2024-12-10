@@ -12,7 +12,11 @@ The **Cinephile_App** serves as an interactive movie database and visualization 
 
 ## Features
 - ** Database management** :
--  Stores information related to movies and the application' users.
+
+   The SQL database consists of 2 main tables: *Users* and *Movies*, along with a number of
+  relationship tables which holds information related to our app.
+  
+   Stores information related to movies and the application' users.
 - ** Visualisation ** : Visualisation.py displays two graphs in a separate window ( side by side ) 
 
 ## Modules used: 
@@ -48,12 +52,20 @@ python main.py
 
 ## Database Management ( data_fetcher.py and sql_syntax.py) 
 
-- Has Two classes and a function:
+- Has Two classes:
+  **User** and **Movie**
+ 
+- User class stores username and list of favourite movies of each user.
+- Movie class stores all the information scraped from datascraped into the database system.
 
-- 
+- Movie Table:
+  The table stores information of all the movies in the database and is linked to the following:
+  Actors ( Movie_Actor )
+  Directors ( Movie_Director )
+  Genres ( Movie_Genre )
 
-
-
+- User Table:
+ Stores username and password for login, and is also linked to favourites ( via Vser_Movie ).
 ## Visualisation.py
 - Has classes Visualisation1 and Visualisation2. 
 - Visualiser1: This class has an attribute graphdata, which is fetched from datascraped.py
