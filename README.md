@@ -1,5 +1,4 @@
-# Cinephile_App with Data Visualization Integration
-
+# Cinephile_App 
 ## Introduction: 
 
  
