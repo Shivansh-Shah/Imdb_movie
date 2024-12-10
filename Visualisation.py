@@ -1,13 +1,28 @@
+# The following are the necessary modules needed for displaying a new window
+
 import tkinter as tk
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-from finalbuf1 import Visualiser1
-from finalbuf2 import Visualiser2
+
+# Logic part for ratings and votings graphs are written in the form of classes and we import those classes here to make use of them.
+
+from ratings_graph import Visualiser1
+from votings_graph import Visualiser2
+
+# datascraped.py is the file from which we're fetching data from, the below functions are required to fetch the graph data which Visualiser1 and 
+# Visualiser2 classes make use of for generation of graphs.
+
 from datascraped import getMovieID, getGraphData, movieName 
 
+# ---- 
+
+
+# We define a class named CreatWindow which implements the whole logic part reuired to generate a window.
+
 class CreateWindow:
-    """Creates a Tkinter window displaying two graphs and handles errors."""
+    #Creates a Tkinter window displaying two graphs and handles errors.
 
     def __init__(self):
+        
         self.root = tk.Tk()
         self.root.title("Average Ratings and Total Votes Graph")
 
@@ -23,23 +38,23 @@ class CreateWindow:
         self.error_label.pack(side=tk.BOTTOM)
 
     def display_graphs(self, graph1, graph2):
-        """Displays the graphs in the Tkinter window."""
-        # Embed the first graph into the first frame
+        #  This method displays the graphs in the Tkinter window.
+        # In short, canvas1 and canvas2 embeds the  graphs into their corresponding frames.
         canvas1 = FigureCanvasTkAgg(graph1, master=self.frame1)
         canvas1.draw()
-        canvas1.get_tk_widget().pack()
+        canvas1.get_tk_widget().pack() # This is for graph in first frame.
 
-        # Embed the second graph into the second frame
+    
         canvas2 = FigureCanvasTkAgg(graph2, master=self.frame2)
         canvas2.draw()
-        canvas2.get_tk_widget().pack()
+        canvas2.get_tk_widget().pack() # This is for graph in second frame.
 
     def show_error(self, message):
-        """Displays an error message in the error label."""
+    # This pops up an error message only when we try to access an invalid moviename.
         self.error_label.config(text=message)
 
     def run(self):
-        """Starts the Tkinter event loop."""
+        # This begins the execution. 
         self.root.mainloop()
 
 def main():
@@ -58,8 +73,9 @@ def main():
 
     # Run the Tkinter event loop
     window.run()
+    
 
-# Run the main function
+# This runs the main function, which in turn, returns the window which we desired. 
 if __name__ == "__main__":
     main()
   
