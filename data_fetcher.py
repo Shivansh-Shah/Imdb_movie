@@ -276,6 +276,23 @@ def insert_favourites(Username, MovieName):
     finally:
         cur.close()
 
+def delete_favourites(Username, MovieName):
+    '''function to remove a user's favourite movie'''
+    cur = con.cursor()
+    #exception handling: if movie is not in database, will print not found and return -1
+    try:
+        cur.execute("SELECT MovieID FROM Movies WHERE MovieName = '{}'".format(MovieName))
+        MovieID = cur.fetchone()[0]
+        if MovieID is None:
+            raise Exception
+        cur.execute("DELETE FROM User_Movie WHERE Username = '{}' AND MovieID = {}".format(Username, MovieID))
+        con.commit()
+    except:
+        print("Not Found")
+        return -1
+    finally:
+        cur.close()
+
 class User:
     def __init__(self, username, firstname, lastname, favourites):
         self.username = username
@@ -308,49 +325,97 @@ def build_db():
     '''this function can only be called once at the beginning of the program to build the database and then insert the data into the tables'''
     cur = con.cursor()
 
-    movies_list = [
-    "The Shawshank Redemption", "The Godfather", "The Dark Knight", "The Godfather: Part II", "12 Angry Men",
-    "Schindler's List", "The Lord of the Rings: The Return of the King", "Pulp Fiction", "The Lord of the Rings: The Fellowship of the Ring",
-    "The Good, the Bad and the Ugly", "Forrest Gump", "Fight Club", "Inception", "Star Wars: Episode V - The Empire Strikes Back",
-    "The Lord of the Rings: The Two Towers", "The Matrix", "Goodfellas", "One Flew Over the Cuckoo's Nest", "Se7en",
-    "The Silence of the Lambs", "City of God", "It's a Wonderful Life", "Life Is Beautiful", "The Green Mile",
-    "Parasite", "Interstellar", "Spirited Away", "The Lion King", "The Usual Suspects", "Casablanca", "Whiplash",
-    "The Shining", "The Pianist", "Back to the Future", "Jaws", "The Dark Knight Rises", "Sunset Boulevard",
-    "The Departed", "Gladiator", "The Prestige", "Memento", "Citizen Kane", "Avengers: Endgame", "The Intouchables",
-    "Modern Times", "The Godfather: Part III", "Django Unchained", "Coco", "The Great Escape", "The Breakfast Club",
-    "A Clockwork Orange", "Rear Window", "Pulp Fiction", "The Matrix Revolutions", "American History X",
-    "Slumdog Millionaire", "Lagaan", "Kabhi Khushi Kabhie Gham", "Dilwale Dulhania Le Jayenge", "3 Idiots", "Zindagi Na Milegi Dobara",
-    "Sholay", "Mughal-e-Azam", "Pyaasa", "Gully Boy", "Bajirao Mastani", "Dangal", "Rang De Basanti",
-    "Drishyam", "Bahubali: The Beginning", "Bahubali: The Conclusion", "Dil Chahta Hai", "Barfi!", "Jab We Met",
-    "Kabir Singh", "Tumbbad", "Andhadhun", "PK", "Chak De! India", "Madhumati", "Gully Boy", "Gandhi", "Zanjeer",
-    "Awaara", "Kabir Singh", "Rang De Basanti", "Sultan", "Tanu Weds Manu", "Veer-Zaara", "Baazigar", "Om Shanti Om",
-    "Shree 420", "Kahaani", "Taare Zameen Par", "Jo Jeeta Wohi Sikandar", "Jodha Akbar", "Jab Tak Hai Jaan",
-    "Barfi", "Dil Se", "Aashiqui 2", "Gandhi", "Rock On!!", "Jumanji: Welcome to the Jungle", "The Revenant",
-    "Mad Max: Fury Road", "Harry Potter and the Sorcerer's Stone", "Forrest Gump", "The Help", "Gone with the Wind",
-    "Singin' in the Rain", "A Beautiful Mind", "The Terminator", "The Incredibles", "Avengers: Infinity War",
-    "The Jungle Book", "Finding Nemo", "The Martian", "The Wizard of Oz", "Fargo", "The Notebook", "Gladiator",
-    "The Social Network", "The Lion King", "Frozen", "Spider-Man: Into the Spider-Verse", "The Fault in Our Stars",
-    "Deadpool", "Batman Begins", "The Princess Bride", "Spider-Man 2", "Logan", "Captain America: The Winter Soldier",
-    "The Incredibles 2", "Guardians of the Galaxy", "Wonder Woman", "Iron Man", "Black Panther", "Thor: Ragnarok",
-    "Avengers: Age of Ultron", "Spider-Man: Homecoming", "Thor", "Doctor Strange", "Aquaman", "Justice League",
-    "Suicide Squad", "Shazam!", "The Witcher", "Game of Thrones", "The Sopranos", "Friends", "Breaking Bad",
-    "Chernobyl", "The Mandalorian", "Westworld", "The Crown", "Stranger Things", "Narcos", "Sherlock",
-    "Better Call Saul", "The Boys", "Peaky Blinders", "Vikings", "Money Heist", "Fleabag", "Dark", "The Office",
-    "Rick and Morty", "The Simpsons", "Black Mirror", "House of Cards", "Twin Peaks", "Doctor Who", "Prison Break",
-    "Band of Brothers", "Narcos: Mexico", "Big Bang Theory", "The Flash", "Arrow", "Daredevil", "Luke Cage",
-    "Jessica Jones", "The Umbrella Academy", "The Witcher", "Lovecraft Country", "The Haunting of Hill House",
-    "The Queen's Gambit", "Sex Education", "Narcos: Mexico", "Shadowhunters", "Supernatural", "The Office",
-    "Buffy the Vampire Slayer", "Supernatural", "The Crown", "The Big Bang Theory", "Orange is the New Black",
-    "Sherlock", "The Walking Dead", "The Mandalorian", "Fargo", "The Leftovers", "Stranger Things", "Chernobyl",
-    "The Night Manager", "Fleabag", "Fargo", "The Boys", "True Detective", "The Handmaid's Tale", "Vikings",
-    "Loki", "The Witcher", "Ragnarok", "Narcos", "Narcos: Mexico", "Narcos", "Money Heist", "Breaking Bad",
-    "The Blacklist", "Mr Robot", "Stranger Things", "Black Mirror", "The Office", "Black Mirror", "Game of Thrones",
-    "Sex Education", "Black Mirror", "Luther", "True Detective", "Sherlock Holmes", "The Crown", "The Boys",
-    "The Handmaid's Tale", "Narcos", "Prison Break", "GLOW", "Killing Eve", "Vikings", "Broadchurch", "Ozark", "The Sinner",
-    "The Outsider", "The Haunting of Hill House", "The Flash", "Daredevil", "Breaking Bad", "Fargo", "The Witcher", "The Mandalorian"
-]
-    for i in movies_list:
+    movies_list = ["The Shawshank Redemption", "The Godfather", "The Dark Knight", "Pulp Fiction",
+    "Forrest Gump", "Inception", "Fight Club", "The Matrix", "Goodfellas", "Se7en",
+    "Interstellar", "The Silence of the Lambs", "Schindler's List", "The Green Mile",
+    "The Departed", "Gladiator", "Braveheart", "The Prestige", "Titanic",
+    "The Wolf of Wall Street", "Saving Private Ryan", "Django Unchained", "The Avengers",
+    "Avatar", "Parasite", "Joker", "The Lion King", "Toy Story", "Finding Nemo",
+    "WALL-E", "Up", "Frozen", "Shrek", "Moana", "Coco", "Beauty and the Beast",
+    "Aladdin", "Mulan", "The Little Mermaid", "Tangled", "Ratatouille", "Zootopia",
+    "Big Hero 6", "The Incredibles", "Monsters, Inc.", "Inside Out", "Brave", "Soul",
+    "Onward", "Cars", "A Bug's Life", "Antz", "Kung Fu Panda", "How to Train Your Dragon",
+    "The Lego Movie", "Spider-Man: Into the Spider-Verse", "The Secret Life of Pets",
+    "Sing", "Despicable Me", "Minions", "Ice Age", "Madagascar", "Happy Feet",
+    "Cloudy with a Chance of Meatballs", "Megamind", "Bolt", "Hotel Transylvania",
+    "The Croods", "The Boss Baby", "Rio", "Horton Hears a Who!", "Epic", "Trolls",
+    "Home", "Ferdinand", "Spies in Disguise", "Wonder Woman", "Black Panther", "Iron Man",
+    "Thor", "Doctor Strange", "Guardians of the Galaxy", "Ant-Man", "Her",
+    "Eternal Sunshine of the Spotless Mind", "La La Land", "Whiplash", "The Grand Budapest Hotel",
+    "The Royal Tenenbaums", "Moonrise Kingdom", "Fantastic Mr. Fox", "Isle of Dogs",
+    "The French Dispatch", "The Shape of Water", "Pan's Labyrinth", "Crimson Peak",
+    "Hellboy", "Pacific Rim", "Edge of Tomorrow", "Oblivion", "Elysium", "District 9",
+    "Chappie", "Moon", "Ex Machina", "Annihilation", "Arrival", "Blade Runner",
+    "Blade Runner 2049", "Dune", "The Martian", "Gravity", "Ad Astra", "Contact",
+    "Solaris", "A Space Odyssey", "The Terminator", "RoboCop", "Total Recall",
+    "Starship Troopers", "Predator", "Alien", "The Thing", "They Live",
+    "Escape from New York", "Big Trouble in Little China", "Christine", "Carrie",
+    "Misery", "The Shining", "Doctor Sleep", "IT", "Stand by Me",
+    "The Mist", "Pet Sematary", "Cujo", "The Amityville Horror", "Poltergeist",
+    "The Conjuring", "The Conjuring 2", "Annabelle", "Insidious", "Sinister",
+    "The Purge", "Saw", "Hostel", "Final Destination", "A Nightmare on Elm Street",
+    "Us", "Get Out", "The Babadook", "The Witch", "Hereditary", "Midsommar",
+    "The Lighthouse", "The Invisible Man", "Hush", "Bird Box", "A Quiet Place",
+    "The Others", "Donnie Darko", "The Sixth Sense", "Signs", "Unbreakable",
+    "Split", "Glass", "Old", "Looper", "Knives Out", "Murder on the Orient Express",
+    "Clue", "The Hateful Eight", "Reservoir Dogs", "The Big Lebowski", "Fargo",
+    "No Country for Old Men", "There Will Be Blood", "The Social Network",
+    "The Imitation Game", "Bohemian Rhapsody", "Rocketman", "The Greatest Showman",
+    "Les Misérables", "Chicago", "Moulin Rouge!", "West Side Story", "Amadeus",
+    "Ray", "Walk the Line", "La Vie en Rose", "The Pianist", "Whale Rider",
+    "Slumdog Millionaire", "Life of Pi", "The Revenant", "Cast Away", "The Impossible",
+    "127 Hours", "Apollo 13", "First Man", "Hidden Figures", "The Theory of Everything",
+    "A Beautiful Mind", "Good Will Hunting", "Dead Poets Society", "The Pursuit of Happyness",
+    "Patch Adams", "One Flew Over the Cuckoo's Nest", "Rain Man", "The Terminal",
+    "The Bucket List", "The Intouchables", "The Best Exotic Marigold Hotel", "Philomena",
+    "The King's Speech", "Elizabeth", "Marie Antoinette", "The Duchess", "The Favourite",
+    "Pride & Prejudice", "Emma", "Sense and Sensibility", "Little Women",
+    "The Age of Innocence", "Atonement", "Anna Karenina", "Jane Eyre", "Wuthering Heights",
+    "Rebecca", "Gone with the Wind", "The Notebook", "The Time Traveler's Wife",
+    "Me Before You", "P.S. I Love You", "The Vow", "Love, Rosie", "Letters to Juliet",
+    "Midnight in Paris", "Amélie", "Chocolat", "Notting Hill", "Four Weddings and a Funeral",
+    "Love Actually", "When Harry Met Sally...", "Sleepless in Seattle", "You've Got Mail",
+    "Pretty Woman", "Dirty Dancing", "Ghost", "Jerry Maguire", "As Good as It Gets",
+    "The Holiday", "The Family Stone", "Crazy, Stupid, Love.", "Friends with Benefits",
+    "No Strings Attached", "The Proposal", "27 Dresses", "Bride Wars", "The Wedding Planner",
+    "Runaway Bride", "My Best Friend's Wedding", "Sweet Home Alabama", "Legally Blonde",
+    "Clueless", "Mean Girls", "Easy A", "She's the Man", "10 Things I Hate About You",
+    "The Princess Diaries", "The Lizzie McGuire Movie", "A Cinderella Story",
+    "The Sisterhood of the Traveling Pants", "Ella Enchanted", "The Parent Trap",
+    "Freaky Friday", "The Princess and the Frog", "Enchanted", "Pocahontas", "Hercules",
+    "Tarzan", "The Hunchback of Notre Dame", "The Rescuers", "The Aristocats",
+    "Robin Hood", "The Jungle Book", "Sleeping Beauty", "Peter Pan", "Alice in Wonderland",
+    "Cinderella", "Snow White and the Seven Dwarfs", "Pinocchio", "Dumbo", "Bambi",
+    "The Fox and the Hound", "The Black Cauldron", "Oliver & Company", "The Great Mouse Detective",
+    "The Secret of NIMH", "An American Tail", "The Land Before Time", "All Dogs Go to Heaven",
+    "Balto", "Spirit: Stallion of the Cimarron", "The Road to El Dorado", "Sinbad: Legend of the Seven Seas",
+    "The Prince of Egypt", "Joseph: King of Dreams", "Chicken Run", "Wallace & Gromit: The Curse of the Were-Rabbit",
+    "Shaun the Sheep Movie", "Arthur Christmas", "Flushed Away", "Open Season", "Surf's Up",
+    "The Angry Birds Movie", "The Emoji Movie", "The SpongeBob SquarePants Movie",
+    "Sponge on the Run", "The Lego Batman Movie", "The Lego Ninjago Movie",
+    "Frozen II", "Ralph Breaks the Internet", "Wreck-It Ralph", "Trolls World Tour", "Sing 2",
+    "The Croods: A New Age", "The Lego Movie 2", "The Angry Birds Movie 2", "Monsters University",
+    "Lagaan", "Dilwale Dulhania Le Jayenge", "3 Idiots", "Sholay", "Kabhi Khushi Kabhie Gham",
+    "Zindagi Na Milegi Dobara", "Jab We Met", "Chennai Express", "Dil Chahta Hai", "Mughal-e-Azam",
+    "Dangal", "PK", "Bajirao Mastani", "Barfi!", "Tanu Weds Manu", "Kabir Singh", "Andhadhun",
+    "Article 15", "Drishyam", "Gully Boy", "Queen", "Taare Zameen Par", "Rang De Basanti",
+    "Swades", "Jodha Akbar", "Kahaani", "Lage Raho Munna Bhai", "My Name is Khan", "Dhoom",
+    "Hera Pheri", "Bhool Bhulaiyaa", "Chupke Chupke", "Dil Se", "Wake Up Sid", "Kai Po Che",
+    "Pyaasa", "Silsila", "Bhaag Milkha Bhaag", "Love Aaj Kal", "Vicky Donor", "Tumhari Sulu",
+    "Chhichhore", "Haider", "Piku", "Padman", "Raazi", "The Lunchbox", "Tumbbad", "Rock On!!",
+    "Goliyon Ki Raasleela Ram-Leela", "Judwaa 2", "Baahubali: The Beginning", "Baahubali: The Conclusion",
+    "Krrish", "Sultan", "Singham", "Golmaal", "Kick", "Badhaai Ho", "Sonu Ke Titu Ki Sweety",
+    "De De Pyaar De", "Ludo", "Mimi", "Bajrangi Bhaijaan", "Kesari", "Maine Pyar Kiya"
+    ]
+
+    for i in movies_list: #commits data of top 250 movies onto local system
         movie_data_dump(getMovieID(i), getMovieData(i))
+    
+    for mov in movies_list: #downloads all movie posters onto local system
+        try:
+            savePoster(mov)
+        except:
+            continue
 
     con.commit()
     cur.close()
@@ -364,19 +429,5 @@ def check_in_database(MovieID):
     if MovieID in existing:
         return True
     return False
-    
-#testing
-# build_db()
-movie_data_dump(getMovieID("Mamma Mia"), getMovieData("Mamma Mia"))
-print(filtersort("Genre", "Romance", "MovieDate", "ASC"))
-md = build_moviedata_object(getMovieID("Mamma Mia"))
-print(md.id, md.name, md.date, md.directors, md.photo, md.plot, md.rating, md.actors, md.genres)
-# insert_favourites('Puttaraj', 'Jagga Jasoos')
-# insert_favourites('ShyNightshade', 'Pretty Woman')
-
-
-# ud1 = get_userdata('ShyNightshade')
-# print(ud1.username, ud1.firstname, ud1.lastname, ud1.favourites)
-
 
 con.close()
