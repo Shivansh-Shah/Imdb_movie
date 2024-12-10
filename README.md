@@ -41,7 +41,9 @@ pip install requests
 pip install beautifulsoup4
 pip install tkinter customtkinter matplotlib numpy
 
-
+### 3. Setting up the database
+1. Open your database client ( MySQL )
+2. Run the script provided in database to create database tables. 
 
 ### 4. Configure Database Connection (if needed)
 Database connection settings might need to be set up within `datascraped.py`. Ensure database credentials are configured properly.
