@@ -1,8 +1,14 @@
 # Cinephile_App 
-## Introduction: 
+## Contributers: 
+- ShaiviNandi( BT2024003) : Worked on backend, particularly with MySQL syntax and it's
+                              integration with Python
+- ShivanshShah( BT2024243) :
 
- 
+- AmanKumarLahoti( BT2024123) :
 
+- PSaratCBharadwaj( BT2024179): Worked on Visualisation
+
+- Puttaraja Beedinalamath ( IMT2024091): 
 ## Overview
 
 The **Cinephile_App** serves as an interactive movie database and visualization platform. It features data on movies present  in our database  using statistics such as *average ratings over time* and *total votes trends*. The visualization is powered by **Custom Tkinter**, and a **Matplotlib**.
