@@ -8,7 +8,7 @@ import matplotlib.dates as mdates
 from datetime import datetime
 
 #This is the data on which the graphs are based on.
-from datascraped import GraphData
+from datascraped import getGraphData, movieName, getMovieID
 
 # Important point: The data is based on results it have been recording since 2020.
 
@@ -55,8 +55,7 @@ class Visualiser1:
         return fig
         
     
-visualiser1 = Visualiser1(GraphData)
-Graph1 = visualiser1.generate_graph()
+
 # print(graph1) -> Doesn't show the graph but instead shows the dimensions of the graph that is gonna pop up.
 
 # plot.show() -> Only this function can again make the graph pop up in a new window, even when it's outside the function.
