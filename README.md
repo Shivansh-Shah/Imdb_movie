@@ -53,7 +53,7 @@ pip install tkinter customtkinter matplotlib numpy
 2. Run the script provided in database to create database tables. 
 
 ### 4. Configure Database Connection (if needed)
-Database connection settings might need to be set up within `datascraped.py`. Ensure database credentials are configured properly.
+Database connection settings will need to be set up- ensure database credentials are configured properly.
 
 ### 5. Run the Visualization Application
 Launch the GUI application via:
