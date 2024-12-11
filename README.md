@@ -6,7 +6,7 @@
 
 - AmanKumarLahoti( BT2024123) :
 
-- PSaratCBharadwaj( BT2024179): Worked on Visualisation
+- PSaratCBharadwaj( BT2024179): Actively contributed to the development and debugging of visualisation.py and other project files, ensuring error resolution
 
 - Puttaraja Beedinalamath ( IMT2024091): 
 ## Overview
