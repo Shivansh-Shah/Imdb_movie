@@ -18,7 +18,7 @@ The **Cinephile_App** serves as an interactive movie database and visualization 
 ## Features
 -   ** Web Scraping** :
 
-     They are the source for our App's database and Visualisation
+     Data scraped from the 2 websites are our source for our App's database and Visualisation
     
 -   ** Database management** :
 
