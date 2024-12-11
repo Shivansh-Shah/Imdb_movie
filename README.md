@@ -89,6 +89,20 @@ python main.py
 
 - User Table:
  Stores username and password for login, and is also linked to favourites ( via Vser_Movie ).
+
+These are operated upon by the functions defined in the data_fetcher.py module:
+- movie_data_dump(MovieID, MovieData) : this takes scraped data from datascraped.py about a particular movie and sorts this data into the database. 
+- build_moviedata_object(MovieID) : this retrieves data about a particular movie from the database and returns it in the form of a movie object
+- filtersort(opt_filter, choice, opt_sortby, asc) : returns list of movie id's with given sort-filter parameters
+    opt_filter is the filter option(must be a capitalised string that says 'GenreName', 'DirectorName', 'ActorName', 'MovieDate', or 'MovieRating') 
+    opt_sortby is the sort option(must be a string that says 'MovieDate', or 'MovieRating')
+    asc is the ascending/descending toggle, must be a string that says 'ASC' for ascending or 'DESC' for descending
+    choice is the value by which you filter, eg 'Comedy' for genre.
+- insert_favourites(Username, MovieName) : this links a user to their favourite movie in the user_movie table
+- delete_favourites(Username, MovieName) : this delinks a user from their favourite movie by deleting the record from the user_movie table
+- get_userdata(Username) : this retrieves the user's favourite movies
+- build_db(): this function can only be called once at the beginning of the program to build the database and then insert the data into the tables
+- 
 ## Visualisation.py
 - Has classes Visualiser1 and Visualiser2. 
 - Visualiser1: This class has an attribute graphdata, which is fetched from datascraped.py
