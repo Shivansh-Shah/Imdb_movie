@@ -62,9 +62,3 @@ def getMovieData(movieName):
         return -1
     
 
-#movieName = input()
-#movieID = getMovieID(movieName)
-GraphData = getGraphData(movieID)
-movieData = getMovieData(movieName)
-
-print(GraphData)
