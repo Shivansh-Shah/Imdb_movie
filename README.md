@@ -73,7 +73,7 @@ python main.py
 
 - Has all the code( logic ) written in it.
 
-- Every action performed in the app works based on this file.
+- Every action performed in the app works based on the functions written in this file.
 
 
 ## Web scraping ( datascraped.py) 
