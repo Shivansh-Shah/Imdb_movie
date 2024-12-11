@@ -1,7 +1,7 @@
 # Cinephile_App 
 ## Contributers: 
 - ShaiviNandi( BT2024003) : Worked on backend, particularly with MySQL syntax and it's
-                              integration with Python
+                              integration with Python. Built the data_fetcher.py module.
 - ShivanshShah( BT2024243) :
 
 - AmanKumarLahoti( BT2024123) :
@@ -39,7 +39,9 @@ The **Cinephile_App** serves as an interactive movie database and visualization 
 
 To run this project locally, follow these steps
 ```
-
+### 1. Install required software
+install MySQLInstaller from https://dev.mysql.com/downloads/installer/ , and then run it, making sure to install both the client and server packages. 
+ 
 ### 2. Install Required Packages
 Install dependencies with `pip`:
 ```bash
@@ -51,7 +53,7 @@ pip install customtkinter matplotlib numpy
 
 ### 3. Setting up the database
 1. Open your database client ( MySQL )
-2. Run the script provided in database to create database tables. 
+2. Run the script provided in MySQLSyntax.sql to build the database. 
 
 ### 4. Configure Database Connection (if needed)
 Database connection settings will need to be set up- ensure database credentials are configured properly.
@@ -78,10 +80,12 @@ python main.py
 - Movie class stores all the information scraped from datascraped into the database system.
 
 - Movie Table:
-  The table stores information of all the movies in the database and is linked to the following:
+  The table stores information of all the movies in the database and is linked to the following relationship:
   Actors ( Movie_Actor )
   Directors ( Movie_Director )
   Genres ( Movie_Genre )
+
+  each of these(Actors, Directors, and Genres) are also a table of their own containing all data about each actor, director and genre respectively. The data for actors and directors is scraped, and the data for genres is hardcoded in the MYSQLSyntax.sql file.
 
 - User Table:
  Stores username and password for login, and is also linked to favourites ( via Vser_Movie ).
