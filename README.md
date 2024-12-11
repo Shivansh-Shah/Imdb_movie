@@ -85,7 +85,7 @@ python main.py
 - User Table:
  Stores username and password for login, and is also linked to favourites ( via Vser_Movie ).
 ## Visualisation.py
-- Has classes Visualisation1 and Visualisation2. 
+- Has classes Visualiser1 and Visualiser2. 
 - Visualiser1: This class has an attribute graphdata, which is fetched from datascraped.py
   It makes use of graphdata and returns a figure ( average ratings graph )
    
