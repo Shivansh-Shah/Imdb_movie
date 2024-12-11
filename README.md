@@ -68,7 +68,7 @@ python main.py
 - Source for Visualisation ( ratingraph - website )
     https://www.ratingraph.com/
 
-## Database Management ( data_fetcher.py and sql_syntax.py) 
+## Database Management ( data_fetcher.py and SQLSyntax.sql) 
 
 - Has Two classes:
   **User** and **Movie**
