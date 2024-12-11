@@ -1,4 +1,4 @@
-# Necessary modules for running the trendanalyzer file.
+# Necessary libraries for running the file.
 
 import tkinter as tk
 import customtkinter as ctk
@@ -14,7 +14,7 @@ from datascraped import getGraphData, getMovieID
 
 # ===================================================================================================
 
-# Constructing a class for Total_votes graph
+# Constructing a class for total_votes graph
 class Visualiser2:
     
     def __init__(self, GraphData):
