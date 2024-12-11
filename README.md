@@ -113,8 +113,14 @@ These are operated upon by the functions defined in the data_fetcher.py module:
 
 ### Screenshot Example
  Yet to be updated.
- 
-![Screenshot of the UI](assets/img1.jpg)
+![Screenshot of the loginpage](assets/loginimg.jpg)
+![Screenshot of the dashboard](assets/dashboardimg.jpg)
+![Screenshot of the moviedetails](assets/moviedetailsimg.jpg)
+![Screenshot of the ratings_graph](assets/ratingraphsimg.jpg)
+![Screenshot of the search movie action](assets/moviesearchimg.jpg)
+![Screenshot of the compare two movies](assets/compareimg.jpg)
+![Screenshot of the favourite movies section](assets/favimg.jpg)
+![Screenshot of the report generation ( list of movies ) ](assets/reportimg.jpg)
 
 
  ## 
