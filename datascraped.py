@@ -1,8 +1,9 @@
-import requests
+# Libraries required 
 
+import requests
 from bs4 import BeautifulSoup
 
-
+#  Function to get movieID from our app's source 
 def getMovieID(movieName):
 
     url="https://www.ratingraph.com/search-results/"
@@ -16,13 +17,16 @@ def getMovieID(movieName):
     
         soup = BeautifulSoup(movie.text, 'html.parser' )
         data = soup.find_all( 'div' , class_ = 'titles results' )
-        return(float( data[0].find_all('a')[0].get('href') ).split('-')[-1][0:-1] )
-    
+        return(( data[0].find_all('a')[0].get('href') ).split('-')[-1][0:-1] )
+    # Returns movieID for a specific movie title recorded in the source site.
+    ## Major problem: Any typo while giving movieName as input causes error.
+    ## It is advised to follow the correct spelling of a movie that is recorded
+    # in the website as the function builds url to get ID 
     else:
     
         return -1
     
-
+# Function the get graphData required for Visualisation.py
 def getGraphData(movieID):
     
     url = "https://www.ratingraph.com/movie-history/"+movieID+'/'
@@ -38,6 +42,7 @@ def getGraphData(movieID):
         return -1
     
 
+# Function to retrieve MovieData for storing in database system.
 def getMovieData(movieName):
     
     url = "https://www.omdbapi.com/?t="
@@ -57,8 +62,8 @@ def getMovieData(movieName):
         return -1
     
 
-movieName = input()
-movieID = getMovieID(movieName)
+#movieName = input()
+#movieID = getMovieID(movieName)
 GraphData = getGraphData(movieID)
 movieData = getMovieData(movieName)
 
