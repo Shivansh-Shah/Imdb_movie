@@ -45,6 +45,7 @@ Install dependencies with `pip`:
 ```bash
 pip install requests
 pip install beautifulsoup4
+pip install mysql-connector-python
 pip install tkinter customtkinter matplotlib numpy
 
 ### 3. Setting up the database
