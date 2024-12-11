@@ -18,6 +18,9 @@ The **Cinephile_App** serves as an interactive movie database and visualization 
 ---
 
 ## Features
+
+-   **  Cinephile App interface ** :
+          The final product of all the programs written.
 -   ** Web Scraping** :
 
      Data scraped from the 2 websites are our source for our App's database and Visualisation
@@ -65,6 +68,14 @@ Launch the GUI application via:
 
 python main.py
 ```
+
+## Cinephile App ( main.py ) 
+
+- Has all the code( logic ) written in it.
+
+- Every action performed in the app works based on this file.
+
+
 ## Web scraping ( datascraped.py) 
 
 - Source for Database management ( Omdbapi - website )
