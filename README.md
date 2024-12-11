@@ -113,5 +113,8 @@ These are operated upon by the functions defined in the data_fetcher.py module:
 
 ### Screenshot Example
  Yet to be updated.
+ 
+![Screenshot of the UI](assets/img1.jpg)
+
 
  ## 
