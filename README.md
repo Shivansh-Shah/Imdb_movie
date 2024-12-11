@@ -2,8 +2,8 @@
 ## Contributers: 
 - ShaiviNandi( BT2024003) : Worked on backend, particularly with MySQL syntax and it's
                               integration with Python. Built the data_fetcher.py module.
-- ShivanshShah( BT2024243) : Worked on UI - report generation, interconnecting files, download
-                            Written code for Datascraped.py
+- ShivanshShah( BT2024243) : Worked on UI - report generation, interconnecting files, 
+                            Written code for Datascraped.py, download.py
 
 - AmanKumarLahoti( BT2024123) :  Worked on UI - Login, Movie Page, Comparision of two movies,
                                 Favourites section
