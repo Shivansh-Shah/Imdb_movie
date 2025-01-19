@@ -2,16 +2,13 @@
 ## Contributers: 
 - ShaiviNandi( BT2024003) : Worked on backend, particularly with MySQL syntax and it's
                               integration with Python. Built the data_fetcher.py module.
-- ShivanshShah( BT2024243) : Worked on UI - report generation, interconnecting files, 
-                            Written code for Datascraped.py, download.py
+- ShivanshShah( BT2024243) : Worked on UI, interconnecting files,Did web scaping(data_scraped.py,download.py(to download images)) and worked on file handling of report generation
 
-- AmanKumarLahoti( BT2024123) :  Worked on UI - Login, Movie Page, Comparision of two movies,
-                                Favourites section
+- AmanKumarLahoti( BT2024123) :  Worked on UI 
 
 - PSaratCBharadwaj( BT2024179): Actively contributed to the development and debugging of visualisation.py and other project files, ensuring error resolution. 
 
-- Puttaraja Beedinalamath ( IMT2024091): Worked on UI - Displaying graphs, search action and                                            daashboard. 
-## Overview
+- Puttaraja Beedinalamath ( IMT2024091): Worked on UI
 
 The **Cinephile_App** serves as an interactive movie database and visualization platform. It features data on movies present  in our database  using statistics such as *average ratings over time* and *total votes trends*. The visualization is powered by **Custom Tkinter**, and a **Matplotlib**.
 
